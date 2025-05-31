@@ -1,0 +1,117 @@
+import streamlit as st
+import pandas as pd
+import altair as alt
+from utils.nlp_classifier import classify_intent
+from utils.supplier_finder import find_suppliers
+from utils.spending_parser import parse_spending_query
+
+
+st.set_page_config(layout="wide")
+st.markdown("""
+    <style>
+        #MainMenu {visibility: hidden;}
+        footer {visibility: hidden;}
+        header {visibility: hidden;}
+    </style>
+""", unsafe_allow_html=True)
+
+# Load data with quarter parsing
+def load_data():
+    df = pd.read_excel("Data/data.xlsx")
+    return df
+
+df = load_data()
+
+
+# Session state
+if "history" not in st.session_state:
+    st.session_state["history"] = []
+
+if not st.session_state.history:
+    with st.chat_message("assistant"):
+        st.markdown("👋 Hi there! Ask me anything about spending or suppliers.")
+
+# User input
+user_input = st.chat_input("Ask me anything about spending and procurement")
+
+if user_input:
+    st.session_state.history.append({"role": "user", "content": user_input})
+    intent = classify_intent(user_input)
+
+    # Defaults
+    month_filter = None
+    data = df.copy()
+
+    if intent == "supplier_query":
+        suppliers = find_suppliers(user_input, data)
+        if not suppliers.empty:
+            st.session_state.history.append({"role": "bot", "content": "Here are the matching suppliers:"})
+            st.session_state.history.append({"role": "table", "content": suppliers})
+        else:
+            st.session_state.history.append({"role": "bot", "content": "No matching suppliers found."})
+
+    elif intent == "dashboard":
+        group_by, month_filter = parse_spending_query(user_input)
+        if month_filter:
+            data = data[data["Month"].str.contains(month_filter, case=False)]
+        grouped = data.groupby(group_by)["PO Amount"].sum().reset_index()
+        st.session_state.history.append({"role": "bot", "content": f"Spending grouped by **{group_by}**"})
+        st.session_state.history.append({"role": "chart", "content": grouped, "x": group_by})
+
+    else:
+        st.session_state.history.append({"role": "bot", "content": "Sorry, I couldn't understand. Try asking about suppliers or spending."})
+
+# Chat history rendering
+import streamlit.components.v1 as components
+
+# Tailwind-styled chat rendering
+chat_html = """
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<div class="bg-gray-900 min-h-screen p-4 text-white font-sans">
+    <h1 class="text-3xl font-bold text-green-500 mb-6">Spend Optimizer</h1>
+    <div class="space-y-4">
+"""
+
+# Build chat bubbles
+for entry in st.session_state.get("history", []):
+    if entry["role"] == "user":
+        chat_html += f"""
+        <div class="flex justify-end">
+            <div class="bg-white text-black rounded-xl px-4 py-2 max-w-md shadow">{entry['content']}</div>
+        </div>
+        """
+    elif entry["role"] == "bot":
+        chat_html += f"""
+        <div class="flex justify-start">
+            <div class="bg-green-500 text-white rounded-xl px-4 py-2 max-w-md shadow">{entry['content']}</div>
+        </div>
+        """
+    elif entry["role"] == "table":
+        chat_html += """
+        <div class="flex justify-start">
+            <div class="bg-green-600 text-white rounded-xl px-4 py-2 max-w-md shadow">[Table shown below]</div>
+        </div>
+        """
+    elif entry["role"] == "chart":
+        chat_html += """
+        <div class="flex justify-start">
+            <div class="bg-green-600 text-white rounded-xl px-4 py-2 max-w-md shadow">[Chart shown below]</div>
+        </div>
+        """
+
+chat_html += "</div></div>"
+
+# Inject HTML component
+components.html(chat_html, height=600, scrolling=True)
+
+# Render charts & tables separately
+for entry in st.session_state.history:
+    if entry["role"] == "table":
+        st.dataframe(entry["content"])
+    elif entry["role"] == "chart":
+        chart = alt.Chart(entry["content"]).mark_bar().encode(
+            x=entry["x"],
+            y="PO Amount",
+            tooltip=["PO Amount"]
+        ).properties(height=400)
+        st.altair_chart(chart, use_container_width=True)
