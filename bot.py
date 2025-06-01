@@ -15,7 +15,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# Load data with quarter parsing
+# Load data
 def load_data():
     df = pd.read_excel("Data/data.xlsx")
     return df
