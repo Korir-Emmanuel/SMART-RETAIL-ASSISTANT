@@ -1,6 +1,5 @@
 # SMART-RETAIL-ASSISTANT
 
-# SMART-RETAIL-ASSISTANT
 
 ## Business Understanding
 
