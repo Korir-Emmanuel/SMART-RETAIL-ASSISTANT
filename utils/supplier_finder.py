@@ -1,6 +1,20 @@
 import pandas as pd
 import re
+import joblib
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
+from tensorflow import keras
+import pickle
+
+with open("vectorizer.pkl", "rb") as f:
+    vectorizer = pickle.load(f)
+
+with open("label_encoder.pkl", "rb") as f:
+    label_encoder = pickle.load(f)
+
+product_model = keras.models.load_model("checkpoints/best_model_run_10.keras")
+
+
+
 
 def clean_text(text):
     stopwords = ENGLISH_STOP_WORDS
