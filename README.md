@@ -69,21 +69,21 @@ Use domain knowledge and imputation techniques to manage missing values.
 
 First, we initialize common libraries we project to utilize in this exercise:
 
-. Pandas, numpy to create and manipulate dataframes
+- Pandas, numpy to create and manipulate dataframes
 
-. Seaborn, matplotlib and wordcloud to facilitate any requisite visualizations within the notebook
+- Seaborn, matplotlib and wordcloud to facilitate any requisite visualizations within the notebook
 
-. Scikit-learn, xgboost  to provide tools for machine learning models, feature scaling,  train-test-split and evaluation metrics.
+- Scikit-learn, xgboost  to provide tools for machine learning models, feature scaling,  train-test-split and evaluation metrics.
 
-. nltk, string, textwrap, re to handle cleaning, tokenization and lemmatization.
+- nltk, string, textwrap, re to handle cleaning, tokenization and lemmatization.
 
-. tensorflow.keras, keras_tuner used to build and tune neural networks for more complex tasks.
+- tensorflow.keras, keras_tuner used to build and tune neural networks for more complex tasks.
 
-. prophet is used for time series forecasting.
+- prophet is used for time series forecasting.
 
-. pickle, json, datetime, os, itertools, warnings for savings models, suppressing warningd and working with loops.
+- pickle, json, datetime, os, itertools, warnings for savings models, suppressing warningd and working with loops.
 
-. pulp for linear programming and optimization tasks.
+- pulp for linear programming and optimization tasks.
 
 ## Data Understanding 
 
@@ -161,13 +161,13 @@ This chart highlights a clear value disparity between local SIG suppliers and fo
 
 We evaluated multiple models for Spend Optimization. Key findings include:
 
-. Logistic Regression provided a solid baseline.
+- Logistic Regression provided a solid baseline.
 
-. Random Forest and XGBoost offered improved performance by handling more complex patterns.
+- Random Forest and XGBoost offered improved performance by handling more complex patterns.
 
-. Deep Neural Network stood out achieving a validation of accuracy of 89% after hyperparameter tuning.
+- Deep Neural Network stood out achieving a validation of accuracy of 89% after hyperparameter tuning.
 
-. This model was selected for deployment in the chatbot.
+- This model was selected for deployment in the chatbot.
 
 ### Model Performance Comparison Graph
 
@@ -198,23 +198,23 @@ Reduced time spent on repetitive data lookups by empowering teams with instant s
 
 ## Conclutions 
 
-. Model Improvement 
+- Model Improvement 
 
 Continue iterating on the Deep Learning model with more labeled data to boost accuracy and generalization.
 
-. Pipeline & automation
+- Pipeline & automation
 
 Set up a model retraining pipeline to automate updates when new data is available.
 
-. Intergrate with real tools
+- Intergrate with real tools
 
 Connecting the Chatbot to the actual systems used by procurement teams, so it becomes part of their everyday work.
 
-. Get real feedback
+- Get real feedback
 
 We plan to test the chatbot with real users, gather feedback and keep improving it based on what is working and what is confusing. 
 
-. Document and Share
+- Document and Share
 
 We will polish our documentation and create a case study or Github write-up, both to showcase our skills and to  help others who want to build similar tools.
 
