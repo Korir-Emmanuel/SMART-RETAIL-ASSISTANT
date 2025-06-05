@@ -12,7 +12,7 @@ with open("label_encoder.pkl", "rb") as f:
     label_encoder = pickle.load(f)
 
 # Load the saved Keras model
-product_model = keras.models.load_model("checkpoints/best_model_run_10.keras")
+product_model = keras.models.load_model("checkpoints/best_model_overall.keras")
 
 def clean_text(text):
     stopwords = ENGLISH_STOP_WORDS
