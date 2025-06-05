@@ -16,7 +16,7 @@ with open("label_encoder.pkl", "rb") as f:
     label_encoder = pickle.load(f)
 
 # Load model
-product_model = keras.models.load_model("checkpoints/best_model_run_10.keras")
+product_model = keras.models.load_model("checkpoints/best_model_overall.keras")
 
 
 st.set_page_config(layout="wide")
