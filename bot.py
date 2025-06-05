@@ -81,12 +81,12 @@ if user_input:
     st.session_state.history.append({"role": "user", "content": user_input})
 
     with st.spinner("Analyzing your input..."):
-        intent, corrected_text = classify_intent(user_input)
+        intent, corrected_text, filtered_words = classify_intent(user_input)
         month_filter = None
         data = df.copy()
 
         if intent == "supplier_query":
-            suppliers = find_suppliers(corrected_text, data)
+            suppliers = find_suppliers(' '.join(filtered_words), data)
             if not suppliers.empty:
                 st.session_state.history.append({"role": "bot", "content": "Here are the matching suppliers:"})
                 st.session_state.history.append({"role": "table", "content": suppliers})
