@@ -4,16 +4,21 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
 # Define intent keywords globally so we can clean them out later
 SUPPLIER_KEYWORDS = {
-    "supplier", "vendor", "price", "quote", "find", "sells", 
-    "buy", "provides", "supply", "supplied", "deliver", "procure", 
-    "order", "seller", "provider", "purchase", "offer", "get"
+    "supplier", "suppliers", "vendor", "vendors", "price", "prices", "quote", "quotes",
+    "find", "sells", "buy", "buys", "provides", "provide", "providing", "supply", "supplied",
+    "supplies", "delivery", "deliver", "delivers", "procure", "procurement", "order", "orders",
+    "seller", "sellers", "provider", "providers", "purchase", "purchases", "offering", "offer", "offers",
+    "get", "acquire", "acquiring", "source", "sourcing", "lookup", "catalog", "inventory"
 }
 
 DASHBOARD_KEYWORDS = {
-    "spending", "show", "visualize", "breakdown", "graph", "chart", 
-    "spend", "summary", "summarize", "overview", "grouped", "cost", 
-    "expenses", "trend", "visualization"
+    "spending", "spend", "spends", "expense", "expenses", "expenditure", "cost", "costs",
+    "show", "display", "visualize", "visualizes", "visualization", "visuals", "breakdown",
+    "graph", "graphs", "chart", "charts", "summary", "summarize", "overview", "trend", "trends",
+    "group", "grouped", "aggregate", "distribution", "report", "reports", "dashboard", "view",
+    "insight", "insights", "analysis", "analyze", "analytics", "patterns", "monthly", "comparison"
 }
+
 
 
 def correct_spelling(text):
