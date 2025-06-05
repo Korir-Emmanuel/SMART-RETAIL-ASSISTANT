@@ -1,16 +1,32 @@
+from textblob import TextBlob
+import re
+
+def correct_spelling(text):
+    blob = TextBlob(text)
+    return str(blob.correct())
+
 def classify_intent(text):
-    text = text.lower()
+    corrected_text = correct_spelling(text.lower())
+
     supplier_keywords = [
-        "supplier", "vendor", "price", "quote", "find", "who sells", 
-        "where to buy", "who provides", "get from", "which supplier"
+        "supplier", "vendor", "price", "quote", "find", "sells", 
+        "buy", "provides", "supply", "supplied", "deliver", "procure", 
+        "order", "seller", "provider", "purchase", "offer", "get"
     ]
+
     dashboard_keywords = [
-        "spending", "show", "visualize", "breakdown", "graph", "chart", "spend",
+        "spending", "show", "visualize", "breakdown", "graph", "chart", "spend", "summary",
         "summarize", "overview", "grouped", "cost", "expenses", "trend", "visualization"
     ]
 
-    if any(word in text for word in supplier_keywords):
-        return "supplier_query"
-    if any(word in text for word in dashboard_keywords):
-        return "dashboard"
-    return "unknown"
+    words = re.findall(r"\b\w+\b", corrected_text)
+
+    supplier_match = any(word in supplier_keywords for word in words)
+    dashboard_match = any(word in dashboard_keywords for word in words)
+
+    if supplier_match:
+        return "supplier_query", corrected_text
+    elif dashboard_match:
+        return "dashboard", corrected_text
+    else:
+        return "unknown", corrected_text
