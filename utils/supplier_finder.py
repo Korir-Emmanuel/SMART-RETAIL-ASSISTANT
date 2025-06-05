@@ -4,14 +4,15 @@ from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 from tensorflow import keras
 import pickle
 
+# Load vectorizer and label encoder
 with open("vectorizer.pkl", "rb") as f:
     vectorizer = pickle.load(f)
 
 with open("label_encoder.pkl", "rb") as f:
     label_encoder = pickle.load(f)
 
+# Load the saved Keras model
 product_model = keras.models.load_model("checkpoints/best_model_run_10.keras")
-
 
 def clean_text(text):
     stopwords = ENGLISH_STOP_WORDS
@@ -40,13 +41,13 @@ def find_suppliers(text, df, vectorizer, product_model, label_encoder):
     combined = pd.concat([product_matches, keyword_matches], ignore_index=True)
     combined = combined.drop_duplicates(subset=["Supplier/Vendor", "Item Description"])
 
-    def count_keyword_matches(desc, user_words):
+    def has_keyword(desc, user_words):
         desc_words = re.findall(r'\b\w+\b', str(desc).lower())
-        return sum(word in desc_words for word in user_words)
+        return int(any(word in desc_words for word in user_words))
 
-    # Score rows: +1 if predicted product name matches, plus keyword match count
+    # Score = 1 if product name matches predicted product + 1 if any keyword found in item description
     combined['score'] = combined.apply(
-        lambda row: (row["Product Name"].lower() == predicted_product.lower()) + count_keyword_matches(row["Item Description"], user_words),
+        lambda row: int(row["Product Name"].lower() == predicted_product.lower()) + has_keyword(row["Item Description"], user_words),
         axis=1
     )
 
