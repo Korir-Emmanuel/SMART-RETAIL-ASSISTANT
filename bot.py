@@ -126,14 +126,15 @@ if st.button("Reset Chat"):
 render_chat(st.session_state.history)
 
 # Show tables & charts
-for entry in st.session_state.history:
+for i, entry in enumerate(st.session_state.history):
     if entry["role"] == "table":
         st.dataframe(entry["content"])
         st.download_button(
             label="Download Results",
             data=entry["content"].to_csv(index=False),
             file_name="supplier_results.csv",
-            mime="text/csv"
+            mime="text/csv",
+            key=f"download-{i}"
         )
     elif entry["role"] == "chart":
         chart = alt.Chart(entry["content"]).mark_bar().encode(
