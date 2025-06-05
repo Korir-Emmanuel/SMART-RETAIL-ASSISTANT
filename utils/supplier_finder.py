@@ -45,7 +45,7 @@ def find_suppliers(text, df, vectorizer, product_model, label_encoder):
         desc_words = re.findall(r'\b\w+\b', str(desc).lower())
         return int(any(word in desc_words for word in user_words))
 
-    # Score based only on keywords present in Item Description
+    # Score based keywords present in Item Description
     combined['score'] = combined.apply(
         lambda row: has_keyword(row["Item Description"], user_words),
         axis=1

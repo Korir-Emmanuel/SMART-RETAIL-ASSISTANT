@@ -2,7 +2,7 @@ from textblob import TextBlob
 import re
 from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
-# Define intent keywords globally so we can clean them out later
+# Define intent keywords
 SUPPLIER_KEYWORDS = {
     "supplier", "suppliers", "vendor", "vendors", "price", "prices", "quote", "quotes",
     "find", "sells", "buy", "buys", "provides", "provide", "providing", "supply", "supplied",
