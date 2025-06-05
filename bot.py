@@ -5,6 +5,19 @@ from utils.nlp_classifier import classify_intent
 from utils.supplier_finder import find_suppliers
 from utils.spending_parser import parse_spending_query
 import streamlit.components.v1 as components
+import pickle
+from tensorflow import keras
+
+# Load vectorizer and label encoder
+with open("vectorizer.pkl", "rb") as f:
+    vectorizer = pickle.load(f)
+
+with open("label_encoder.pkl", "rb") as f:
+    label_encoder = pickle.load(f)
+
+# Load model
+product_model = keras.models.load_model("checkpoints/best_model_run_10.keras")
+
 
 st.set_page_config(layout="wide")
 st.markdown("""
@@ -86,7 +99,7 @@ if user_input:
         data = df.copy()
 
         if intent == "supplier_query":
-            suppliers = find_suppliers(' '.join(filtered_words), data)
+            suppliers = find_suppliers(' '.join(filtered_words), data, vectorizer, product_model, label_encoder)
             if not suppliers.empty:
                 st.session_state.history.append({"role": "bot", "content": "Here are the matching suppliers:"})
                 st.session_state.history.append({"role": "table", "content": suppliers})
