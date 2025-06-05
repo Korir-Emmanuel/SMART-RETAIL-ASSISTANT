@@ -1,5 +1,5 @@
-def parse_spending_query(text):
-    text = text.lower()
+def parse_spending_query(corrected_text):
+    text = corrected_text.lower()
     group_by = "Main category"  # Default
 
     if "manager" in text or "managers" in text:
