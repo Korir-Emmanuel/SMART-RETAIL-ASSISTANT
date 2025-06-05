@@ -52,7 +52,7 @@ def render_chat(history):
     chat_html = """
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <div class="bg-gray-900 min-h-screen p-4 text-white font-sans">
-        <h1 class="text-3xl font-bold text-green-500 mb-6">Spend Optimizer</h1>
+        <h1 class="text-3xl font-bold text-green-500 mb-6">iProcure</h1>
         <div class="space-y-4">
     """
     for entry in history:
