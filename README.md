@@ -103,59 +103,71 @@ The bulk of purchase orders fall below ksh 5,000, suggesting many small-value tr
 
 The unknown category contributes the largest share of spending, over ksh 12M. This may indicate missing or unclassified data. Major spenders includes: Physical Security CEO, Segments Tribe, Regional Networks Implementation and Operations.
 
-![alt text](image-10.png)
+![image](https://github.com/user-attachments/assets/3de34750-4de3-437d-b648-4e9fea4ab6c0)
+
 
 2. Supplier Frequency
 
 CVXXXX is the most engaged supplier with over 2,000 interactions, significantly ahead of others. This level of activity suggests a strong relationship but also raises a flag on dependency.
 
-![alt text](image-11.png)
+![image](https://github.com/user-attachments/assets/c0582e47-747f-43f7-8032-49ee7515f9c1)
+
 
 3. Monthly trend of PO Amounts 
 
 There is a major spike in PO spending in APRIL 2024, likely tied to year end procurement. Then a dip in May followed by a gradual recovery in June and July.
 
-![alt text](image-12.png)
+![image](https://github.com/user-attachments/assets/2a5e93ee-b425-48be-aa50-629a0c7f5d2f)
+
 
 4. PO Amount by Supplier Type (Local vs Foreign)
 
 Foreign suppliers generally recieve larger, more consistent PO amounts. Local suppliers handle many small orders and a few very large ones.
 
-![alt text](image-13.png)
+![image](https://github.com/user-attachments/assets/aba5828f-b7f1-405f-95dc-528ed43d6e96)
+
 
 5. Spend per Main Category
 
 Corporate Services has the highest spend by far dominating all other categories. Technology Networks, IT and Terminals have very low spend in comparison. There is a large spending imbalance.
 
-![alt text](image-5.png)
+![image](https://github.com/user-attachments/assets/3d28a55e-732e-4d78-9a21-694c959de679)
+
 
 6. Spend per sub-category (top 10)
 
 HR & Staff Welfare, Facilities and Property and Sales and Marketing, Security dominate spending.
 
-![alt text](image-6.png)
+![image](https://github.com/user-attachments/assets/607d1cbe-ac42-4200-869c-cfb18271069c)
+
 
 7. Spend on Women/Youth owned businesses
 
 The majority of POs are going to non-SIG(Others) suppliers. Women-owned suppliers recieve a notable share while youth-owned suppliers are significantly underrepresented.
 
-![alt text](image-7.png)
+![image](https://github.com/user-attachments/assets/995dbeab-745d-45b9-b7ac-c8d6c88519ec)
+
 
 8. Distribution of PO to special Interest Groups
 
 The majority of purchases orders go to suppliers outside of Special Interest Groups. Women-owned businesses account for 17% and youth-owned suppliers are significantly underrepresented at just 3%.
 
-![alt text](image-8.png)
+![image](https://github.com/user-attachments/assets/0917a3ed-de08-44c3-a24e-84fb90fb7467)
+
 
 9. Product Type breakdown
 
 Most procurement activities centers around Travel & Accommodation, Advertising and Facilities Management.
 
+![image](https://github.com/user-attachments/assets/5e47a293-ea83-41b6-999a-2013c2581201)
+
+
 ### Multi-Variate analysis
 
 This chart highlights a clear value disparity between local SIG suppliers and foreign or non-SIG vendors. While youth-owned suppliers have a higher median spend than women-owned ones, both are still on the lower end compared to others. Foreign suppliers consistently receive higher value POs, possibly due to specialization or contract size.
 
-![alt text](image-9.png)
+![image](https://github.com/user-attachments/assets/fd5de1f0-f58f-4a00-bf9f-9f29590a7e0e)
+
 
 
 ## Model Performance & Evaluation 
@@ -172,7 +184,8 @@ We evaluated multiple models for Spend Optimization. Key findings include:
 
 ### Model Performance Comparison Graph
 
-![alt text](image-14.png)
+![image](https://github.com/user-attachments/assets/096ede09-0291-4127-ab0d-4c86a4841185)
+
 
 ## Recommendation
 
