@@ -137,7 +137,7 @@ for i, entry in enumerate(st.session_state.history):
             key=f"download-{i}"
         )
     elif entry["role"] == "chart":
-        chart = alt.Chart(entry["content"]).mark_bar().encode(
+        chart = alt.Chart(entry["content"]).mark_bar(color="green").encode(
             x=alt.X(entry["x"], title=entry["x"].replace("_", " ").title()),
             y=alt.Y("PO Amount", title="Total PO Amount"),
             tooltip=["PO Amount"]

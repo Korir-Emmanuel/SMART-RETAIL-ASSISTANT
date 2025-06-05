@@ -22,7 +22,7 @@ def clean_text(text):
 def find_suppliers(text, df, vectorizer, product_model, label_encoder):
     user_words = clean_text(text)
     if not user_words:
-        return pd.DataFrame(columns=["Supplier/Vendor", "Item Description", "Product Name", "PO Amount"])
+        return pd.DataFrame(columns=["Supplier/Vendor", "Item Description", "Product Name", "Unit Price"])
 
     vectorized_input = vectorizer.transform([' '.join(user_words)])
     
