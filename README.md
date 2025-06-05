@@ -209,7 +209,7 @@ Users can access procurement  data through simple chat queries.
 Reduced time spent on repetitive data lookups by empowering teams with instant self-serve insights.
 
 
-## Conclutions 
+## Conclusions 
 
 - Model Improvement 
 
