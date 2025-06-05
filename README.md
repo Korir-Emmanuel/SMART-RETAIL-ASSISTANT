@@ -95,7 +95,8 @@ Used notebook to explore the data and established the following insights:
 
 The bulk of purchase orders fall below ksh 5,000, suggesting many small-value transactions. There is also fewer, high value transactions beyond ksh 20,000.
 
-![alt text](image.png)
+![image](https://github.com/user-attachments/assets/d36c5d2f-544b-4ed3-9390-de1950897033)
+
 
 ### Bivariate Analysis 
 1. Top Spending Departments 
